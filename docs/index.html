@@ -89,7 +89,8 @@ document.getElementById("askBtn").addEventListener("click", async () => {
 
     try {
         const response = await fetch(
-            "https://news-research-chatbot-sjtm.onrender.com/chat?query=" + encodeURIComponent(query),
+            "https://<his-render-service>.onrender.com/chat?query=" + encodeURIComponent(query)
+,
             {
                 method: "GET",
                 headers: { "Content-Type": "application/json" }
