@@ -53,14 +53,27 @@
   </footer>
 
   <script>
-    // tiny placeholder behavior so the page looks interactive
-    document.getElementById('ask').addEventListener('click', function(){
-      var q=document.getElementById('query').value.trim();
-      var r=document.getElementById('response');
-      if(!q){ r.innerHTML='<em>Type a query to see a demo response.</em>'; return; }
-      r.innerHTML = '<strong>Query:</strong> ' + q + '<br><br>'
-        + '<em>Demo reply:</em> This is a placeholder response. Replace with your real frontend build files under <code>docs/</code>.';
+document.getElementById('ask').addEventListener('click', async function(){
+  const q = document.getElementById('query').value.trim();
+  const r = document.getElementById('response');
+
+  if(!q){ r.innerHTML='<em>Type a query</em>'; return; }
+
+  r.innerHTML = '<em>Thinking...</em>';
+
+  try {
+    const res = await fetch('https://your-backend.onrender.com/ask', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ query: q })
     });
-  </script>
+
+    const data = await res.json();
+    r.innerHTML = data.response || JSON.stringify(data);
+  } catch(err) {
+    r.innerHTML = 'Error: ' + err;
+  }
+});
+</script>
 </body>
 </html>
