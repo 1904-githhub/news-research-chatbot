@@ -3,21 +3,63 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- Important: base href ensures relative paths work when hosted at /repo-name/ -->
   <base href="./">
-  <title>news-research-chatbot</title>
-
-  <!-- Example CSS reference (use your actual CSS filename/path under docs/) -->
-  <link rel="stylesheet" href="css/styles.css">
+  <title>news-research-chatbot — demo</title>
+  <style>
+    /* simple embedded styles so no external CSS is required */
+    body { font-family: Arial, Helvetica, sans-serif; margin:0; padding:24px; background:#fafafa; color:#111 }
+    header { display:flex; align-items:center; gap:16px; margin-bottom:18px }
+    .logo { width:56px; height:56px; background:#2b6cb0; color:white; display:flex; align-items:center; justify-content:center; border-radius:8px; font-weight:700 }
+    .card { background:white; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.06); padding:18px; max-width:980px }
+    .controls { display:flex; gap:8px; margin-top:12px }
+    input[type="text"] { flex:1; padding:10px; border-radius:6px; border:1px solid #ddd }
+    button { padding:10px 14px; border-radius:6px; border:0; background:#2b6cb0; color:white; cursor:pointer }
+    footer { margin-top:18px; color:#666; font-size:13px }
+    pre { background:#f3f4f6; padding:12px; border-radius:6px; overflow:auto }
+  </style>
 </head>
 <body>
-  <div id="root">
-    <!-- If you have a built SPA, copy the built index.html contents here instead -->
-    <h1>news-research-chatbot</h1>
-    <p>If your UI is missing, ensure the built JS & CSS files are present in docs/</p>
+  <header>
+    <div class="logo">NR</div>
+    <div>
+      <h1 style="margin:0; font-size:20px">news-research-chatbot</h1>
+      <div style="color:#666; font-size:13px">Repository preview — fallback UI</div>
+    </div>
+  </header>
+
+  <div class="card" id="app">
+    <div>
+      <label style="font-weight:600">Ask the demo bot (local placeholder)</label>
+      <div class="controls">
+        <input id="query" type="text" placeholder="Type a news query, e.g., 'climate summit 2025'">
+        <button id="ask">Ask</button>
+      </div>
+    </div>
+
+    <section style="margin-top:16px">
+      <h3 style="margin:0 0 8px 0">Response</h3>
+      <div id="response"><em>Demo is running — replace with your real build when ready.</em></div>
+    </section>
+
+    <section style="margin-top:14px">
+      <h4 style="margin:0 0 8px 0">Diagnose tips</h4>
+      <pre id="diag">If your real UI is missing, upload the built files (index.html + static/ assets) into docs/ and ensure asset paths are relative (no leading slash).</pre>
+    </section>
   </div>
 
-  <!-- Example JS reference -->
-  <script src="js/main.js" defer></script>
+  <footer>
+    <small>Use this page as a temporary fallback. To show your actual app, upload the build files into <code>docs/</code> (see repository steps).</small>
+  </footer>
+
+  <script>
+    // tiny placeholder behavior so the page looks interactive
+    document.getElementById('ask').addEventListener('click', function(){
+      var q=document.getElementById('query').value.trim();
+      var r=document.getElementById('response');
+      if(!q){ r.innerHTML='<em>Type a query to see a demo response.</em>'; return; }
+      r.innerHTML = '<strong>Query:</strong> ' + q + '<br><br>'
+        + '<em>Demo reply:</em> This is a placeholder response. Replace with your real frontend build files under <code>docs/</code>.';
+    });
+  </script>
 </body>
 </html>
