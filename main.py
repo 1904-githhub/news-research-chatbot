@@ -4,10 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://1904-github.github.io",      # your friend's site
-        "https://1904-github.github.io/news-research-chatbot", 
-        "http://localhost:3000",
-        "http://127.0.0.1:3000"
+        "https://1904-github.github.io",                     
+        "https://1904-github.github.io/news-research-chatbot"  
     ],
     allow_origin_regex=r"https://1904-github\.github\.io.*",
     allow_credentials=True,
